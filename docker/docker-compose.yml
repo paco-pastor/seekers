@@ -4,6 +4,5 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: seekers
-      MYSQL_USER: root
     ports:
       - "3306:3306"
