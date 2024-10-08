@@ -1,5 +1,5 @@
-import { account, Account } from "../database";
-import database from "../database";
+import { account, Account } from "../../../db/database";
+import database from "../../../db/database";
 import { eq } from "drizzle-orm";
 import { json } from '@sveltejs/kit'
 

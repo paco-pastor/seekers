@@ -8,7 +8,8 @@ CREATE TABLE artifact (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     rarity VARCHAR(50) NOT NULL,
-    website VARCHAR(255) NOT NULL
+    website VARCHAR(255) NOT NULL,
+    delay INT NOT NULL DEFAULT 300,
 );
 
 CREATE TABLE account_artifacts (
