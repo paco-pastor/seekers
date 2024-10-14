@@ -1,0 +1,30 @@
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: seekers
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - seekers
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    networks:
+      - seekers
+
+volumes:
+  db:
+  app:
+networks:
+  seekers:

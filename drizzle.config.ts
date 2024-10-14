@@ -5,7 +5,7 @@ export default defineConfig({
   schema: "./src/db/schema",
   out: "./drizzle",
   dbCredentials: {
-    host: "mysql://localhost:3306", // FIXME
+    host: "db", // FIXME
     user: "root",
     database: "seekers",
     password: "root",
