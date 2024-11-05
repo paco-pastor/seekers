@@ -18,7 +18,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"bcrypt": "^5.1.1",
 		"drizzle-orm": "^0.33.0",
+		"jsonwebtoken": "^9.0.2",
 		"mysql2": "^3.11.3"
 	}
 }
