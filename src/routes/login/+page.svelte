@@ -1,16 +1,30 @@
 <script>
     import Button from "../../components/Button.svelte";
     import Input from "../../components/Input.svelte";
+    let email = "";
+    let password = "";
 
-    // TODO
+    // WIP
     function submit(event) {
-        console.log("Form submitted");
+       fetch("/login", {
+           method: "POST",
+           headers: {
+               "Content-Type": "application/json"
+           },
+           body: JSON.stringify({email, password}) // Don't
+       }).then(response => {
+           if (response.ok) {
+               window.location.href = "/dashboard";
+           } else {
+               alert("Invalid email or password");
+           }
+       });
     }
 </script>
 
 <form>
-    <Input type="email" placeholder="Email" required />
-    <Input type="password" placeholder="Password" required />
+    <Input type="email" placeholder="Email" required bind:value={email} />
+    <Input type="password" placeholder="Password" required bind:value={password}/>
     <Button type="submit" text="Click me" onClick={submit}/>
 </form>
 
