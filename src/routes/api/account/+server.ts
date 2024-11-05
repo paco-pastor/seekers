@@ -1,22 +1,18 @@
 import { account, Account } from "../../../db/schema/account";
 import database from "../../../db/database";
 import { eq } from "drizzle-orm";
-import { json } from '@sveltejs/kit'
-
 export async function POST({ request } : { request: Request }) {
   const { email, password } = await request.json();
   try {
     const result = await database.insert(account).values({ email, password });
     const insertId = result[0].insertId;
-    return json({
+    return new Response(JSON.stringify({
       message: `Account successfully created with the following id : ${insertId}`,
-    });
+    }), { status: 201, headers: { 'Content-Type': 'application/json' } });
   }
   catch (e) {
-    return json({ error: e.message });
+    return new Response(JSON.stringify({ error: e.message }), { status: 500, headers: { 'Content-Type': 'application/json' } });
   }
-
-
 }
 
 export async function GET({ url }) {
@@ -27,8 +23,8 @@ export async function GET({ url }) {
     .where(eq(account.id, id));
   
   if (result.length === 0) {
-    return json({ error: "Account not found" });
+    return new Response(JSON.stringify({ error: "Account not found" }), { status: 404, headers: { 'Content-Type': 'application/json' } });
   }
 
-  return json(result);
+  return new Response(JSON.stringify(result), { status: 200, headers: { 'Content-Type': 'application/json' } });
 }
